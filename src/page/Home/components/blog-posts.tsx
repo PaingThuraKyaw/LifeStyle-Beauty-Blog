@@ -3,7 +3,7 @@ import { MoveRight } from "lucide-react";
 
 const BlogPosts = () => {
   return (
-    <div className=" py-5 bg-black/5 px-[1.5rem]  md:px-[8rem] ">
+    <div className="  h-[1360px]  md:h-auto  py-5 bg-black/5  px-[1.5rem]  md:px-[8rem] ">
       <div className="pt-7 flex items-center  justify-between">
         <h4 className=" font-bold text-lg md:text-2xl">Blog Posts</h4>
         <div className=" cursor-pointer flex items-center space-x-1">
@@ -12,10 +12,10 @@ const BlogPosts = () => {
         </div>
       </div>
       {/* posts */}
-      <div className="my-4 mb-10 grid grid-cols-12 h-[700px] items-center justify-center gap-8">
+      <div className="my-4 mb-10 grid grid-cols-12 lg:h-[700px] items-start justify-center gap-8">
         <div className="md:col-span-6 col-span-12 ">
           <div className=" gap-6 flex flex-col">
-            <div className=" p-5 bg-white h-[345px]">
+            <div className=" p-5 bg-white  lg:h-[345px]">
               <img
                 src="Rectangle7.jpg"
                 className=" w-full h-[240px]"
@@ -31,15 +31,15 @@ const BlogPosts = () => {
                 </p>
               </div>
             </div>
-            <div className=" grid grid-cols-12 gap-5  h-[345px] ">
-              <div className=" col-span-6 bg-white p-5 ">
+            <div className=" md:hidden lg:grid grid grid-cols-12 gap-5 bg-black/5  h-[340px] ">
+              <div className=" col-span-12 md:col-span-6 bg-white p-5 ">
                 <img
                   src="Rectangle2.jpg"
                   className=" w-full object-cover"
                   alt="rectangle"
                 />
                 <div>
-                  <div className="  py-3 flex items-center justify-between">
+                  <div className="  py-2 flex items-center justify-between">
                     <Badge className=" hover:bg-yellow bg-yellow">
                       fashion
                     </Badge>
@@ -50,7 +50,7 @@ const BlogPosts = () => {
                   </p>
                 </div>
               </div>
-              <div className=" col-span-6 bg-white p-5 ">
+              <div className=" col-span-12 md:col-span-6 bg-white p-5 ">
                 <img
                   src="Rectangle3.png"
                   className=" w-full object-cover"
@@ -69,10 +69,10 @@ const BlogPosts = () => {
             </div>
           </div>
         </div>
-        <div className=" w-full  col-span-6 p-6 bg-white">
+        <div className=" w-full col-span-12 hidden md:h-[380px] lg:h-auto  md:block md:col-span-6 p-6 bg-white">
           <img
             src="Rectangle6.png"
-            className="object-cover w-full h-[600px]"
+            className="object-cover w-full h-[240px] lg:h-[600px]"
             alt="rectangle"
           />
           <div>
@@ -86,7 +86,7 @@ const BlogPosts = () => {
 
       {/* my */}
 
-      <div className=" my-52 grid grid-cols-12">
+      {/* <div className=" mt-52 mb-40 grid grid-cols-12">
         <div className=" col-span-6">
           <h2 className=" font-bold text-4xl">Welcome, I’m Caroline</h2>
           <p className=" mt-5 pt-5 text-lg text-black/80">
@@ -128,7 +128,7 @@ const BlogPosts = () => {
             alt="rectangle"
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -5,7 +5,7 @@ import BlogPosts from "./components/blog-posts";
 const Home = () => {
   return (
     <>
-      <div className=" relative">
+      <div className="relative overflow-x-hidden">
         <div className=" hidden md:block">
           <AspectRatio ratio={16 / 7}>
             <div className=" px-[8rem] bottom-1/2 transform translate-y-1/2 absolute">
@@ -36,7 +36,7 @@ const Home = () => {
           <h2 className=" text-5xl leading-[4rem] font-bold">
             Elevate Life <br /> with Style.
           </h2>
-          <p className=" track my-3  w-[95%] ">
+          <p className=" track my-3   w-[95%] ">
             Explore a curated blend of style and purpose at THE LIFESTYLED,
             where every post is a step towards a more inspired and elevated
             life.
