@@ -7,7 +7,7 @@ const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
   return (
     <div className=" relative">
-      <div className=" py-4 shadow-lg px-[5rem]">
+      <div className=" py-4 shadow-lg px-[1.5rem] md:px-[5rem]">
         <div className=" flex items-center justify-between">
           <h3 className=" text-base space-x-2">
             <span className=" tracking-[0.2rem] ">THE</span>
@@ -15,7 +15,7 @@ const Navbar = () => {
               STYLEDLIF
             </span>
           </h3>
-          <div className="  flex items-center">
+          <div className=" hidden  md:flex items-center">
             <div className=" space-x-7">
               <Link to={"/about"}>About</Link>
               <Link to={"/blog"}>Blog</Link>
