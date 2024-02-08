@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FaFacebookF, FaInstagram } from "react-icons/fa6";
 import { Mail, Search, X } from "lucide-react";
 import { useState } from "react";
@@ -17,9 +17,10 @@ const Navbar = () => {
           </h3>
           <div className=" hidden  md:flex items-center">
             <div className=" space-x-7">
-              <Link to={"/about"}>About</Link>
-              <Link to={"/blog"}>Blog</Link>
-              <Link to={"/contact"}>Contact</Link>
+              <NavLink to={"/"}>Home</NavLink>
+              <NavLink to={"/about"}>About</NavLink>
+              <NavLink to={"/blog"}>Blog</NavLink>
+              <NavLink to={"/contact"}>Contact</NavLink>
             </div>
 
             <div className=" flex border-l-2 border-black/50 border-r-2 mx-7 px-7 items-center space-x-5">

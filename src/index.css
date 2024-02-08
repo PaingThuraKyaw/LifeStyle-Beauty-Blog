@@ -92,3 +92,11 @@ h6 {
 * {
   font-family: "Mukta", sans-serif;
 }
+
+.active {
+  @apply relative
+}
+.active::before{
+  content: '';
+ @apply w-full h-[1px] bg-black absolute bottom-0
+}

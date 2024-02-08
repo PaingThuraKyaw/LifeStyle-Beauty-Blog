@@ -1,23 +1,31 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import Layout from "./Layout/layout"
-import Home from "./page/Home"
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Layout from "./Layout/layout";
+import Home from "./page/Home";
+import Blog from "./page/Blog";
+import { Suspense } from "react";
 
 const Router = () => {
-    const router = createBrowserRouter([
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
         {
-            path : "/",
-            element : <Layout/>,
-            children : [
-                {
-                    index : true,
-                    element : <Home/>
-                }
-            ]
-        }
-    ])
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: "/blog",
+          element: <Blog />,
+        },
+      ],
+    },
+  ]);
   return (
-   <RouterProvider router={router} />
-  )
-}
+    <Suspense fallback={"loading"}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
+};
 
-export default Router
+export default Router;
