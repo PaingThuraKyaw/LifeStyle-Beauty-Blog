@@ -1,8 +1,11 @@
 import axios from "@/api/axios";
+import { params } from "@/type/type";
+import { getParam } from "@/util/getParams";
 import { useQuery } from "@tanstack/react-query";
 
-const getAllBlog = async (id: number) => {
-  const { data } = await axios.get(`blog?category=${id}`, {
+const getAllBlog = async (payload : params) => {      
+  const params = getParam(payload)
+  const { data } = await axios.get(`blog?${params}`, {
     headers: {
       "Content-Type": "Application/json",
     },
@@ -10,9 +13,9 @@ const getAllBlog = async (id: number) => {
   return data;
 };
 
-export const useGetAllBlog = (id: number) => {
+export const useGetAllBlog = (payload : params) => {  
   return useQuery({
-    queryKey: ["blog"],
-    queryFn: () => getAllBlog(id),
+    queryKey: ["blog",payload],
+    queryFn: () => getAllBlog(payload),
   });
 };

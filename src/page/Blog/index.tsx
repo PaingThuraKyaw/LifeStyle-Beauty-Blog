@@ -9,30 +9,36 @@ import {
 import { useGetAllBlog } from "@/store/server/blog/queries";
 import { useCategories } from "@/store/server/category/queries";
 import { SelectValue } from "@radix-ui/react-select";
+// import BlogCard from "./component/blog-card";
+import useFilter from "@/hook/use-filter";
 
 const Blog = () => {
   const category = useCategories();
-  const { data } = useGetAllBlog(2);
+  const [filter, setFilter] = useFilter("");
 
-  if (category.isPending) {
+  const { data, isPending } = useGetAllBlog({
+    page: "1",
+    categoryId: filter.toString(),
+    search: "",
+  });
+
+  if (category.isPending && isPending) {
     return <Loader />;
   }
 
-  console.log(data);
-
   return (
-    <div className=" px-[1.5rem] mt-5  md:px-[5rem]">
+    <div className=" px-[1.5rem] mt-10  md:px-[5rem]">
       <div className=" flex items-center justify-between">
         <h2 className=" text-2xl font-bold">Blog Post</h2>
         <div className=" w-[200px]">
-          <Select defaultValue="0">
+          <Select
+            onValueChange={(value) => setFilter(value)}
+            defaultValue={"0"}
+          >
             <SelectTrigger className=" text-center bg-black/5">
-              <SelectValue
-                defaultValue={"ALL"}
-                placeholder="Select your category"
-              />
+              <SelectValue placeholder="Select your category" />
             </SelectTrigger>
-            <SelectContent defaultValue={"ALL"}>
+            <SelectContent>
               <SelectGroup>
                 {category.data?.map((cat) => (
                   <SelectItem
@@ -51,6 +57,10 @@ const Blog = () => {
           </Select>
         </div>
       </div>
+      {/* Blog */}
+      {/* {
+        data.map(blog => <BlogCard blog={blog} />)
+      } */}
     </div>
   );
 };
