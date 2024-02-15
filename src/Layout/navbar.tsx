@@ -1,10 +1,22 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaFacebookF, FaInstagram } from "react-icons/fa6";
 import { Mail, Search, X } from "lucide-react";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
+  const [search, setSearch] = useState("");
+
+  const navigate = useNavigate();
+
+  const onSearch = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    navigate(`/blog/${search}`);
+    setSearch("");
+    setOpen(false)
+  };
+
   return (
     <div className=" relative">
       <div className=" py-4 shadow-lg px-[1.5rem] md:px-[5rem]">
@@ -38,21 +50,35 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {/* search input */}
+
       {open && (
-        <div className=" z-10 absolute -bottom-12 pb-2 pt-[11px] bg-white/80 w-full">
-          <div className=" flex items-center space-x-8 px-[5rem]">
-            <X
-              className=" cursorsetOpen-pointer"
-              onClick={() => false}
-              size={20}
-            />
+        <div className=" z-10 absolute -bottom-18 pb-2 pt-[11px] bg-white/80 w-full">
+          {/* search input */}
+          <form
+            onSubmit={onSearch}
+            className=" flex items-center space-x-8 px-[5rem]"
+          >
+            <Button
+              size={"sm"}
+              variant={"ghost"}
+              type="button"
+              onClick={() => setOpen(false)}
+            >
+              <X
+                className=" cursor-pointer"
+                onClick={() => setOpen(false)}
+                size={20}
+              />
+            </Button>
             <input
+              name="blog"
               type="text"
               placeholder="type here..."
               className=" pb-1 focus:outline-none border-b-2 w-full bg-transparent border-black/30 "
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
-          </div>
+          </form>
         </div>
       )}
     </div>

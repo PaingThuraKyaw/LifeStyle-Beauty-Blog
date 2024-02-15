@@ -3,6 +3,7 @@ import Layout from "./Layout/layout";
 import Home from "./page/Home";
 import Blog from "./page/Blog";
 import { Suspense } from "react";
+import BlogSearch from "./page/Blog/component/blog-search";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -18,6 +19,10 @@ const Router = () => {
           path: "/blog",
           element: <Blog />,
         },
+        {
+          path : "/blog/:search",
+          element : <BlogSearch/>
+        }
       ],
     },
   ]);
