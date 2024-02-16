@@ -1,6 +1,6 @@
 export interface ApiResponse<T> {
   body: T[];
-  pagination: {
+  pagination ?: {
     total: number;
     PAGE_SIZE: number;
     current_page: number;

@@ -4,6 +4,7 @@ import Home from "./page/Home";
 import Blog from "./page/Blog";
 import { Suspense } from "react";
 import BlogSearch from "./page/Blog/component/blog-search";
+import BlogDetail from "./page/Blog/component/blog-detailed";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -20,9 +21,13 @@ const Router = () => {
           element: <Blog />,
         },
         {
-          path : "/blog/:search",
-          element : <BlogSearch/>
-        }
+          path: "/blog/:search",
+          element: <BlogSearch />,
+        },
+        {
+          path: "/blog/detail/:id",
+          element: <BlogDetail />,
+        },
       ],
     },
   ]);

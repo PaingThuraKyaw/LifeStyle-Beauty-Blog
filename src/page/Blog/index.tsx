@@ -40,11 +40,17 @@ const Blog = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem className=" font-bold" value="all">
+                <SelectItem
+                  aria-label={"AlL"}
+                  className=" font-bold"
+                  value="all"
+                  id="all"
+                >
                   ALL
                 </SelectItem>
                 {category.data?.map((cat) => (
                   <SelectItem
+                    id={filter}
                     key={cat.id}
                     className=" font-bold"
                     value={cat.id.toString()}

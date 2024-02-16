@@ -94,9 +94,9 @@ h6 {
 }
 
 .active {
-  @apply relative
+  @apply relative font-bold text-black/40 md:font-normal md:text-black;
 }
-.active::before{
-  content: '';
- @apply w-full h-[1px] bg-black absolute bottom-0
+.active::before {
+  content: "";
+  @apply md:w-full h-[1px] bg-black absolute bottom-0;
 }
