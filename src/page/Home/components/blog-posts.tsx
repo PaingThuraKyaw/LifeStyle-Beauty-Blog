@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { MoveRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const BlogPosts = () => {
   return (
@@ -7,10 +8,10 @@ const BlogPosts = () => {
       <div className="  h-[1360px]  md:h-auto  py-5 bg-black/5  px-[1.5rem]  md:px-[5rem] ">
         <div className="pt-7 flex items-center  justify-between">
           <h2 className=" font-bold text-lg md:text-2xl">Blog Posts</h2>
-          <div className=" cursor-pointer flex items-center space-x-1">
+          <Link to={'/blog'} className=" cursor-pointer flex items-center space-x-1">
             <span>View all posts</span>
             <MoveRight />
-          </div>
+          </Link>
         </div>
         {/* posts */}
         <div className="my-4 mb-10 grid grid-cols-12 lg:h-[700px] items-start justify-center gap-8">

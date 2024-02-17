@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useGetAllBlog } from "@/store/server/blog/queries";
+import { ArrowRightFromLine } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 
 const BlogSearch = () => {
@@ -61,11 +62,13 @@ const BlogSearch = () => {
           {data?.body.map((blog) => (
             <div className=" mx-2 md:mx-0 bg-white py-4 px-3 my-4 items-center gap-5 grid grid-cols-12">
               <div className=" col-span-12 md:col-span-5">
-                <img
-                  src={blog.image}
-                  className=" w-full h-[180px] object-cover object-top"
-                  alt={blog.title}
-                />
+                <Link to={`/blog/detail/${blog.id}`}>
+                  <img
+                    src={blog.image}
+                    className=" w-full h-[180px] object-cover object-top"
+                    alt={blog.title}
+                  />
+                </Link>
               </div>
               <div className=" px-5 col-span-12 md:col-span-7">
                 <h3 className=" text-2xl">{blog.title}</h3>
@@ -75,6 +78,11 @@ const BlogSearch = () => {
                   </Badge>
                   <p className=" text-sm ">{blog.created_blog}</p>
                 </div>
+                <Link to={`/blog/detail/${blog.id}`}>
+                  <p className=" italic  mt-5 text-black/50 flex items-center">
+                    Read <ArrowRightFromLine className=" ml-2" size={14} />
+                  </p>
+                </Link>
               </div>
             </div>
           ))}

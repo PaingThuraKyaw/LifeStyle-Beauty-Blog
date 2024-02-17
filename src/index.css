@@ -34,6 +34,7 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
+    --swiper-navigation-size: 16px !important;
   }
 
   .dark {
@@ -99,4 +100,46 @@ h6 {
 .active::before {
   content: "";
   @apply md:w-full h-[1px] bg-black absolute bottom-0;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-button-prev {
+  @apply after:text-white/75  bg-black/30 rounded-full;
+  font-size: 16px !important;
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.swiper-button-next {
+  @apply after:text-white/75  bg-black/30 rounded-full;
+  font-size: 16px !important;
+  width: 30px !important;
+  height: 30px !important;
 }

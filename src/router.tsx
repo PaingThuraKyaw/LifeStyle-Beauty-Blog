@@ -5,6 +5,7 @@ import Blog from "./page/Blog";
 import { Suspense } from "react";
 import BlogSearch from "./page/Blog/component/blog-search";
 import BlogDetail from "./page/Blog/component/blog-detailed";
+import Loader from "./components/Loader";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -32,7 +33,7 @@ const Router = () => {
     },
   ]);
   return (
-    <Suspense fallback={"loading"}>
+    <Suspense fallback={<Loader/>}>
       <RouterProvider router={router} />
     </Suspense>
   );
