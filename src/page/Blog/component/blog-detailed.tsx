@@ -47,7 +47,7 @@ const BlogDetail = () => {
           <h4 className=" font-bold text-base">Related Post</h4>
           {relatedBlog.data?.body.slice(0, 2).map((blog) => (
             <div className=" mt-4 p-4 bg-white">
-              <Link to={`/blog/detail/${blog.id}`}>
+              <Link to={`/blog/${blog.id}`}>
                 <img
                   src={blog.image}
                   className=" w-full h-[200px] object-cover"

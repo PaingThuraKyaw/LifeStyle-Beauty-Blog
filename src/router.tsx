@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import BlogSearch from "./page/Blog/component/blog-search";
 import BlogDetail from "./page/Blog/component/blog-detailed";
 import Loader from "./components/Loader";
+import Guard from "./Layout/Guard";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -22,18 +23,24 @@ const Router = () => {
           element: <Blog />,
         },
         {
-          path: "/blog/:search",
+          path: "/blog/search/:search",
           element: <BlogSearch />,
         },
         {
-          path: "/blog/detail/:id",
-          element: <BlogDetail />,
+          path: "/blog/:id",
+          element: <Guard />,
+          children: [
+            {
+              index: true,
+              element: <BlogDetail />,
+            },
+          ],
         },
       ],
     },
   ]);
   return (
-    <Suspense fallback={<Loader/>}>
+    <Suspense fallback={<Loader />}>
       <RouterProvider router={router} />
     </Suspense>
   );

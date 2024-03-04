@@ -1,9 +1,10 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaFacebookF, FaInstagram } from "react-icons/fa6";
-import { AlignJustify, Mail, Search, X } from "lucide-react";
+import { AlignJustify, Lock, Search, X } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import AuthAlertBox from "@/components/authAlertBox";
 
 const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -14,7 +15,7 @@ const Navbar = () => {
 
   const onSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate(`/blog/${search}`);
+    navigate(`/blog/search/${search}`);
     setSearch("");
     setOpen(false);
     setModel(false);
@@ -25,10 +26,12 @@ const Navbar = () => {
       <div className=" py-4 shadow-lg px-[1.5rem] md:px-[5rem]">
         <div className=" flex items-center justify-between">
           <h3 className=" text-base space-x-2">
-            <span className=" md:tracking-[0.2rem] ">THE</span>
-            <span className=" md:tracking-[0.2rem] text-shadow font-bold ">
-              STYLEDLIF
-            </span>
+            <Link to={"/"}>
+              <span className=" md:tracking-[0.2rem] ">THE</span>
+              <span className=" md:tracking-[0.2rem] text-shadow font-bold ">
+                STYLEDLIF
+              </span>
+            </Link>
           </h3>
           <div className=" hidden  md:flex items-center">
             <div className=" space-x-7">
@@ -41,7 +44,9 @@ const Navbar = () => {
             <div className=" flex border-l-2 border-black/50 border-r-2 mx-7 px-7 items-center space-x-5">
               <FaFacebookF />
               <FaInstagram />
-              <Mail size={18} />
+              <AuthAlertBox>
+                <Lock size={16} className=" cursor-pointer" />
+              </AuthAlertBox>
             </div>
             <div>
               <Search
@@ -84,6 +89,12 @@ const Navbar = () => {
                   <NavLink onClick={() => setModel(false)} to={"/contact"}>
                     Contact
                   </NavLink>
+
+                  <div className=" flex  items-center space-x-5">
+                    <FaFacebookF />
+                    <FaInstagram />
+                    <Lock size={16} className=" cursor-pointer" />
+                  </div>
                 </div>
               </SheetContent>
             </Sheet>

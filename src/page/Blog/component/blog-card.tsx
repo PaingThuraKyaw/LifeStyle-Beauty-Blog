@@ -4,11 +4,10 @@ import { ArrowRightFromLine } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const BlogCard = ({ blog }: { blog: SelectedBlog }) => {
-  console.log(blog);
 
   return (
     <div className=" p-4 bg-white">
-      <Link to={`/blog/detail/${blog.id}`}>
+      <Link to={`/blog/${blog.id}`}>
         <img src={blog.image} className=" w-full h-full" alt={blog.title} />
       </Link>
       <div className=" mt-4">
@@ -25,7 +24,7 @@ const BlogCard = ({ blog }: { blog: SelectedBlog }) => {
               : blog.title.slice(0, 60) + "..."}
           </h2>
         </div>
-        <Link to={`/blog/detail/${blog.id}`}>
+        <Link to={`/blog/${blog.id}`}>
           <p className=" italic justify-end flex items-center">
             Read <ArrowRightFromLine className=" ml-2" size={14} />
           </p>

@@ -3,12 +3,22 @@ import { MoveRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const BlogPosts = () => {
+  const handlerTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <>
       <div className="  h-[1360px]  md:h-auto  py-5 bg-black/5  px-[1.5rem]  md:px-[5rem] ">
         <div className="pt-7 flex items-center  justify-between">
           <h2 className=" font-bold text-lg md:text-2xl">Blog Posts</h2>
-          <Link to={'/blog'} className=" cursor-pointer flex items-center space-x-1">
+          <Link
+            onClick={handlerTop}
+            to={"/blog"}
+            className=" cursor-pointer flex items-center space-x-1"
+          >
             <span>View all posts</span>
             <MoveRight />
           </Link>
@@ -16,8 +26,8 @@ const BlogPosts = () => {
         {/* posts */}
         <div className="my-4 mb-10 grid grid-cols-12 lg:h-[700px] items-start justify-center gap-8">
           <div className="md:col-span-6 col-span-12 ">
-            <div className=" gap-6 flex flex-col">
-              <div className=" p-5 bg-white  lg:h-[345px]">
+            <div className=" gap-5 flex flex-col">
+              <div className=" p-5 bg-white  lg:h-[340px]">
                 <img
                   src="Rectangle7.jpg"
                   className=" w-full object-cover h-[240px]"
@@ -35,11 +45,11 @@ const BlogPosts = () => {
                   </p>
                 </div>
               </div>
-              <div className=" md:hidden lg:grid grid grid-cols-12 gap-5 bg-black/5  h-[340px] ">
+              <div className=" md:hidden lg:grid grid grid-cols-12 gap-5    ">
                 <div className=" col-span-12 md:col-span-6 bg-white p-5 ">
                   <img
                     src="Rectangle2.jpg"
-                    className=" w-full object-cover"
+                    className=" h-[225px] w-full object-cover"
                     alt="rectangle"
                   />
                   <div>
@@ -57,7 +67,7 @@ const BlogPosts = () => {
                 <div className=" col-span-12 md:col-span-6 bg-white p-5 ">
                   <img
                     src="Rectangle3.png"
-                    className=" w-full object-cover"
+                    className=" w-full h-[220px] object-cover"
                     alt="rectangle"
                   />
                   <div>

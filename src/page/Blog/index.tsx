@@ -1,4 +1,3 @@
-import Loader from "@/components/Loader";
 import {
   Select,
   SelectContent,
@@ -11,19 +10,35 @@ import { useCategories } from "@/store/server/category/queries";
 import { SelectValue } from "@radix-ui/react-select";
 import BlogCard from "./component/blog-card";
 import useFilter from "@/hook/use-filter";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Blog = () => {
   const category = useCategories();
   const [filter, setFilter] = useFilter("");
 
-  const { data, isPending } = useGetAllBlog({
+  const { data, isPending, isLoading } = useGetAllBlog({
     page: "1",
     categoryId: filter.toString(),
     search: "",
   });
 
-  if (category.isPending && isPending) {
-    return <Loader />;
+  if ((isPending && isLoading) || data === undefined) {
+    return (
+      <div className=" px-[1.5rem] pt-10 gap-5 mb-16 md:px-[5rem] grid grid-cols-12">
+        {[1, 2, 3, 4, 5].map((id) => (
+          <Skeleton
+            key={id}
+            className=" col-span-12 md:col-span-3 h-[300px] p-5 w-full bg-black/10  "
+          >
+            <Skeleton className=" h-[200px] w-full bg-zinc-400"></Skeleton>
+            <div className=" flex items-center justify-between mt-5">
+              <Skeleton className=" h-[20px] bg-zinc-400 w-[50px] rounded-full "></Skeleton>
+              <Skeleton className=" h-[20px] bg-zinc-400 w-[50px] rounded-full "></Skeleton>
+            </div>
+          </Skeleton>
+        ))}
+      </div>
+    );
   }
 
   return (
@@ -35,10 +50,10 @@ const Blog = () => {
             onValueChange={(value) => setFilter(value)}
             defaultValue={filter || "all"}
           >
-            <SelectTrigger className=" text-center bg-black/5">
+            <SelectTrigger className=" z-50 text-center bg-black/5">
               <SelectValue placeholder="Select your category" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className=" z-50">
               <SelectGroup>
                 <SelectItem
                   aria-label={"AlL"}
@@ -64,12 +79,14 @@ const Blog = () => {
         </div>
       </div>
       {/* Blog */}
-      <div className=" min-h-[80vh] mt-4 grid gap-4 grid-cols-12">
-        {data?.body.map((blog) => (
-          <div key={blog.id} className=" col-span-12 md:col-span-3">
-            <BlogCard blog={blog} />
-          </div>
-        ))}
+      <div className="min-h-[80vh]">
+        <div className=" mt-4 grid gap-4 grid-cols-12">
+          {data?.body.map((blog) => (
+            <div key={blog.id} className=" col-span-12 md:col-span-3">
+              <BlogCard blog={blog} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
