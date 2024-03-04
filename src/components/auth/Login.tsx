@@ -12,6 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { authProp } from "../authAlertBox";
+import { useLogin } from "@/store/server/auth/mutation";
 
 const formschema = z.object({
   email: z.string().email(),
@@ -22,12 +23,20 @@ const formschema = z.object({
 
 const Login = ({
   setAuthName,
+  setOpen,
 }: {
   setAuthName: React.Dispatch<React.SetStateAction<authProp>>;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const form = useForm<z.infer<typeof formschema>>({
     resolver: zodResolver(formschema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
+
+  const login = useLogin();
 
   return (
     <>
@@ -40,7 +49,11 @@ const Login = ({
       <Form {...form}>
         <form
           className=" space-y-3 mt-4"
-          onSubmit={form.handleSubmit((value) => console.log(value))}
+          onSubmit={form.handleSubmit((value) =>
+            login.mutate(value, {
+              onSuccess: () => setOpen(false),
+            })
+          )}
           action=""
         >
           <FormField
@@ -85,7 +98,7 @@ const Login = ({
             </a>
           </div>
           <div className=" pt-2">
-            <Button size={"sm"} className=" w-full">
+            <Button disabled={login.isPending} size={"sm"} className=" w-full">
               Log in
             </Button>
           </div>

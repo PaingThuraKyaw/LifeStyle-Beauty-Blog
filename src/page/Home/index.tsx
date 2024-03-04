@@ -2,8 +2,12 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import BlogPosts from "./components/blog-posts";
 import { Link } from "react-router-dom";
+import { useAuthStore } from "@/store/client/auth/useStore";
 
 const Home = () => {
+   const { auth } = useAuthStore();
+
+   console.log(auth);
   return (
     <>
       <div className="relative overflow-x-hidden">

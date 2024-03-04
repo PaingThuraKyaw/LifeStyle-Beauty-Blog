@@ -27,10 +27,10 @@ const AuthAlertBox = ({ children }: { children: ReactNode }) => {
           >
             <X size={18} />
           </AlertDialogCancel>
-          {authName === "login" && <Login setAuthName={setAuthName} />}
-          {authName === "register" && <Register setAuthName={setAuthName} />}
-          {authName === "forgot" && <Forgot setAuthName={setAuthName} />}
-          {authName === "reset" && <Reset />}
+          {authName === "login" && <Login key={1} setOpen={setOpen} setAuthName={setAuthName} />}
+          {authName === "register" && <Register key={2} setAuthName={setAuthName} />}
+          {authName === "forgot" && <Forgot key={3} setAuthName={setAuthName} />}
+          {authName === "reset" && <Reset key={4} />}
         </div>
       </AlertDialogContent>
     </AlertDialog>

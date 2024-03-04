@@ -35,6 +35,12 @@ const Register = ({
 }) => {
   const form = useForm<z.infer<typeof formschema>>({
     resolver: zodResolver(formschema),
+    defaultValues : {
+      username : "",
+      email : "",
+      password : "",
+      password_confirmation : ""
+    }
   });
 
   const register = useRegister();
