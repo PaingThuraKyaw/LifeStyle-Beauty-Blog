@@ -89,12 +89,13 @@ const Navbar = () => {
                   <NavLink onClick={() => setModel(false)} to={"/contact"}>
                     Contact
                   </NavLink>
-
-                  <div className=" flex  items-center space-x-5">
-                    <FaFacebookF />
-                    <FaInstagram />
+                </div>
+                <div className=" flex mt-5  items-center space-x-5">
+                  <FaFacebookF />
+                  <FaInstagram />
+                  <AuthAlertBox>
                     <Lock size={16} className=" cursor-pointer" />
-                  </div>
+                  </AuthAlertBox>
                 </div>
               </SheetContent>
             </Sheet>

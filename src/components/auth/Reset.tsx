@@ -11,12 +11,9 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { authProp } from "../authAlertBox";
-import { useRegister } from "@/store/server/auth/mutation";
 
 const formschema = z
   .object({
-    username: z.string().min(1, { message: "Username required" }),
     email: z.string().email(),
     password: z
       .string()
@@ -28,45 +25,25 @@ const formschema = z
     path: ["password_confirmation"],
   });
 
-const Register = ({
-  setAuthName,
-}: {
-  setAuthName: React.Dispatch<React.SetStateAction<authProp>>;
-}) => {
+const Reset = () => {
   const form = useForm<z.infer<typeof formschema>>({
     resolver: zodResolver(formschema),
   });
 
-  const register = useRegister();
-
   return (
     <>
       <div>
-        <h3 className=" font-bold text-2xl">Create Your Account</h3>
-        <p className=" text-neutral-600 text-sm">Welcome!</p>
+        <h3 className=" font-bold text-2xl">Reset Your Password</h3>
+        <p className=" text-neutral-600 text-sm">
+          Please enter reset your new password!
+        </p>
       </div>
       <Form {...form}>
         <form
           className=" space-y-3 mt-4"
-          onSubmit={form.handleSubmit((value) =>
-            register.mutate(value, {
-              onSuccess: () => setAuthName("login"),
-            })
-          )}
+          onSubmit={form.handleSubmit((value) => console.log(value))}
           action=""
         >
-          <FormField
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Usernaem</FormLabel>
-                <FormControl>
-                  <Input {...field} placeholder="example@gmail.com" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <FormField
             name="email"
             render={({ field }) => (
@@ -118,27 +95,14 @@ const Register = ({
             )}
           />
           <div className=" pt-2">
-            <Button
-              disabled={register.isPending}
-              size={"sm"}
-              className=" w-full"
-            >
-              Create account
+            <Button size={"sm"} className=" w-full">
+              Reset Password
             </Button>
           </div>
         </form>
       </Form>
-      <div className=" text-sm flex mt-3 items-center space-x-2 font-semibold justify-center">
-        <p>Alread account have?</p>
-        <a
-          onClick={() => setAuthName("login")}
-          className=" cursor-pointer text-pink"
-        >
-          Log in
-        </a>
-      </div>
     </>
   );
 };
 
-export default Register;
+export default Reset;
